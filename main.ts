@@ -53,6 +53,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     monster.destroy()
     info.changeLifeBy(-1)
 })
+let monster_2: Sprite = null
 let projectile: Sprite = null
 let monster: Sprite = null
 let projectile2: Sprite = null
@@ -216,9 +217,42 @@ d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d 
 d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d 
 d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d 
 `)
-info.setLife(3)
+info.setLife(10)
 player_1.setFlag(SpriteFlag.StayInScreen, true)
 controller.moveSprite(player_1, 200, 200)
+game.onUpdateInterval(5000, function () {
+    monster_2 = sprites.create(img`
+. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . f f f f f . . . . . . . . . 
+. . . . . . . . f f 2 2 2 2 b f f . . . . . . . 
+. . . . . . . f b 2 2 2 2 2 2 2 b f . . . . . . 
+. . . . . . . f 2 2 2 2 2 2 2 2 2 f . . . . . . 
+. . . . . . f 2 2 2 2 2 2 2 2 f f f f . . . . . 
+. . . . . . f 2 2 2 2 2 2 2 c 2 2 2 b f . . . . 
+. . . . . . f b 2 2 f c 2 f 2 b 2 b f f . . . . 
+. . . . . . f 2 2 2 2 2 b f b f b f f . . . . . 
+. . . . . . f 2 b 2 b 2 f c f f f f . . . . . . 
+. . . . . . f b f b f c f c c c f . . . . . . . 
+. . . . . . f f f f f f f f f f . . . . . . . . 
+. . . . . . . . . f f f f f f . . . . . . . . . 
+. . . . . . . . . f f f f f f . . . . . . . . . 
+. . . . . . . . . f f f f f f f . . f . . . . . 
+. . . . . . . . . . f f f f f f f f f . . . . . 
+. . . . . . . . . . . f f f f f f f . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+    monster_2.setVelocity(-31, 0)
+    monster_2.setPosition(180, Math.randomRange(40, 120))
+})
+forever(function () {
+    music.playMelody("E B C5 A B G A F ", 120)
+})
 game.onUpdateInterval(1000, function () {
     monster = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . 
