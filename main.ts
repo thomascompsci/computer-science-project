@@ -1,3 +1,23 @@
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile2 = sprites.createProjectileFromSprite(img`
+. . . . . . . . . . . . . . . . 
+. . . f f f f f 2 . . . . . . . 
+. . . f f f f f 2 . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . f f f f f 2 . . . . . . . . 
+. . f f f f f 2 . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f 2 . . . . . . 
+. . . . f f f f f 2 . . . . . . 
+. . . . . . . . . . . . . . . . 
+. f f f f f 2 . . . . . . . . . 
+. f f f f f 2 . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, player_1, 200, 0)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     info.changeScoreBy(1)
     coin.setPosition(Math.randomRange(0, 160), Math.randomRange(0, 160))
@@ -7,6 +27,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     monster.destroy(effects.fountain, 200)
     info.changeScoreBy(1)
+    music.baDing.play()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -34,6 +55,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let projectile: Sprite = null
 let monster: Sprite = null
+let projectile2: Sprite = null
 let coin: Sprite = null
 let player_1: Sprite = null
 player_1 = sprites.create(img`
